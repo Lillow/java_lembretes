@@ -12,27 +12,38 @@ package tratamento_de_excecoes;
  * criar exceções verificadas ou não verificadas, respectivamente.
  * **************************
  */
-import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class ClausulaFinally {
 
-    private void lerArquivo() {
-        System.out.println("");
+    private void lerArquivo() throws FileNotFoundException {
+        File arquivo = new File("arquivo.txt");
+        Scanner ler = new Scanner(arquivo);
+        while (ler.hasNextLine()) {
+            var linha = ler.nextLine();
+            System.out.println(linha);
+        }
+
     }
 
     private void fecharArquivo() {
-        System.out.println("");
+        System.out.println("Arquivo Fechado");
     }
 
     public void exeArquivo() {
         try {
             // Código que pode lançar uma exceção
             lerArquivo();
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             // Código para lidar com a exceção de leitura de arquivo
+            System.out.println("Arquivo não Encontrado.");
+
         } finally {
             // Código que será executado sempre
             fecharArquivo();
+
         }
     }
 
