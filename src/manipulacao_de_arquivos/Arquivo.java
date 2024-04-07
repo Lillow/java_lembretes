@@ -9,8 +9,11 @@ package manipulacao_de_arquivos;
  *
  *********************
  */
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,7 +28,7 @@ public class Arquivo {
      * para facilitar a leitura de diferentes tipos de dados.
      * *******************************
      */
-    public void ler(String nomeArquivo) {
+    public void lerFile(String nomeArquivo) {
         try {
             File arquivo = new File(nomeArquivo);
             Scanner ler = new Scanner(arquivo);
@@ -38,6 +41,35 @@ public class Arquivo {
         } catch (FileNotFoundException e) {
             System.out.println("Erro: Arquivo não encontrado");
         }
+
+    }
+
+    public void lerFileReader(String nomeArquivo) {
+        try {
+            FileReader arquivo = new FileReader(nomeArquivo);
+            Scanner ler = new Scanner(arquivo);
+
+            while (ler.hasNextLine()) {
+                String linha = ler.nextLine();
+
+                System.out.println(linha);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro: Arquivo não encontrado");
+        }
+
+    }
+
+    public void lerBufferedReader(String nomeArquivo) {
+        try {
+            // Ler de um arquivo
+            BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo));
+            String linha = reader.readLine();
+            System.out.println("Conteúdo do arquivo: " + linha);
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao ler arquivo.");
+        }
     }
 
     /**
@@ -49,17 +81,19 @@ public class Arquivo {
      *
      ********************************************
      */
-    public void escrever(String nomeArquivo, String conteudoArquivo) {
+    public void escreverFileWriter(String nomeArquivo, String conteudoArquivo) {
 
         try {
             FileWriter arquivo = new FileWriter(nomeArquivo);
             PrintWriter escrever = new PrintWriter(arquivo);
 
             escrever.println(conteudoArquivo);
+            escrever.write(conteudoArquivo);
             escrever.close();
         } catch (IOException e) {
             System.out.println("Erro ao escrever no arquivo.");
         }
+
     }
 
     /**
