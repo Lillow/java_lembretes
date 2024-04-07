@@ -7,6 +7,7 @@ import classes_objetos_heranca_polimorfismo.SuperClasse;
 import java.io.IOException;
 import java.util.Scanner;
 import manipulacao_de_arquivos.Arquivo;
+import packages.MinhaClasse;
 import programacao_orientada_eventos_Swing.ExemploLayout;
 import programacao_orientada_eventos_Swing.JanelaSwing;
 import tratamento_de_excecoes.ClausulaFinally;
@@ -22,6 +23,7 @@ public class Main extends MainMetodos {
 //        escolha();
 //        janela();
 //        exemploLayout();
+//        packages();
     }
 
 }
@@ -140,6 +142,13 @@ class MainMetodos {
     public static void exemploLayout() {
         ExemploLayout layout = new ExemploLayout();
         layout.create();
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+    //packages
+    public static void packages() {
+        MinhaClasse obj = new MinhaClasse();
+        obj.mostrarMensagem();
     }
 
 }
