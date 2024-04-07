@@ -1,6 +1,7 @@
 package main;
 
 //import classes_objetos_heranca_polimorfismo.Interface;
+import chamadas_de_API.ApiExemplo;
 import classes_objetos_heranca_polimorfismo.Interface;
 import classes_objetos_heranca_polimorfismo.SubClasse;
 import classes_objetos_heranca_polimorfismo.SuperClasse;
@@ -24,6 +25,7 @@ public class Main extends MainMetodos {
 //        janela();
 //        exemploLayout();
 //        packages();
+        apiExemplo();
     }
 
 }
@@ -66,19 +68,25 @@ class MainMetodos {
     public static void escolha() {
         Scanner ler = new Scanner(System.in);
 
-        System.out.println("Escolha o que fazer: \n -Criar aquivo (1) \n -Ler aquivo (2) \n -Renomer aquivo (3) \n -Excluir aquivo (4) \n ");
-        var op = ler.nextInt();
+        System.out.println("Escolha o que fazer: \n -Criar aquivo (1) \n -ler ArquivoFile (2) \n -ler ArquivoFileReader (2.1) \n -ler ArquivoBufferedReader(2.2) \n -Renomer aquivo (3) \n -Excluir aquivo (4) \n ");
+        var op = ler.next();
         switch (op) {
-            case 1:
+            case "1":
                 criarArquivo();
                 break;
-            case 2:
-                lerArquivo();
+            case "2":
+                lerArquivoFile();
                 break;
-            case 3:
+            case "2.1":
+                lerArquivoFileReader();
+                break;
+            case "2.2":
+                lerArquivoBufferedReader();
+                break;
+            case "3":
                 renomearArquivo();
                 break;
-            case 4:
+            case "4":
                 excluirArquivo();
                 break;
             default:
@@ -95,17 +103,37 @@ class MainMetodos {
         System.out.println("Digite o conteúdo do arquivo: ");
         var conteudoArquivo = ler.next();
 
-        arquivo.escrever(nomeArquivo, conteudoArquivo);
+        arquivo.escreverFileWriter(nomeArquivo, conteudoArquivo);
     }
 
-    public static void lerArquivo() {
+    public static void lerArquivoFile() {
         Scanner ler = new Scanner(System.in);
         Arquivo arquivo = new Arquivo();
 
         System.out.println("Nome do arquivo a ser lido: ");
         var nomeArquivo = ler.next();
 
-        arquivo.ler(nomeArquivo);
+        arquivo.lerFile(nomeArquivo);
+    }
+
+    public static void lerArquivoFileReader() {
+        Scanner ler = new Scanner(System.in);
+        Arquivo arquivo = new Arquivo();
+
+        System.out.println("Nome do arquivo a ser lido: ");
+        var nomeArquivo = ler.next();
+
+        arquivo.lerFileReader(nomeArquivo);
+    }
+
+    public static void lerArquivoBufferedReader() {
+        Scanner ler = new Scanner(System.in);
+        Arquivo arquivo = new Arquivo();
+
+        System.out.println("Nome do arquivo a ser lido: ");
+        var nomeArquivo = ler.next();
+
+        arquivo.lerBufferedReader(nomeArquivo);
     }
 
     public static void renomearArquivo() {
@@ -151,4 +179,10 @@ class MainMetodos {
         obj.mostrarMensagem();
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+    //ApiExemplo
+    public static void apiExemplo() {
+        ApiExemplo api = new ApiExemplo();
+        api.getTeste("https://pokeapi.co/api/v2/pokemon/ditto");
+    }
 }
